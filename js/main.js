@@ -39,15 +39,13 @@ document.addEventListener("DOMContentLoaded", function () {
       var status = form.querySelector(".form-status");
       var submitBtn = form.querySelector("button[type=submit]");
       var formData = new FormData(form);
-      var payload = Object.fromEntries(formData);
 
       if (status) status.textContent = "Envoi en cours...";
       if (submitBtn) submitBtn.disabled = true;
 
-      fetch("https://api.web3forms.com/submit", {
+      fetch("contact-handler.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(payload)
+        body: formData
       })
         .then(function (response) { return response.json(); })
         .then(function (data) {
