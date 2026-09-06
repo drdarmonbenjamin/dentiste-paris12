@@ -1,0 +1,36 @@
+# robots.txt du site dentiste-paris12.com
+User-agent: *
+Allow: /
+
+# Robots d'indexation IA / moteurs conversationnels explicitement autorisés
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://www.dentiste-paris12.com/sitemap.xml
