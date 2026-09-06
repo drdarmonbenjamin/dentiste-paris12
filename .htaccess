@@ -1,0 +1,24 @@
+# .htaccess : dentiste-paris12.com
+# URLs propres (sans .html) + redirections depuis l'ancien site WordPress
+
+RewriteEngine On
+
+# --- Ancienne page "Le cabinet", supprimée : redirection vers Contact ---
+RewriteRule ^cabinet-implant-dentaire-paris-daumesnil/?$ /contact [R=301,L]
+
+# --- Retire un slash final superflu (héritage des anciennes URLs WordPress) ---
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# --- index ou index.html -> racine ---
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^ /? [R=301,L]
+
+# --- Requête directe vers un .html -> redirige vers l'URL sans extension ---
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# --- Sert en interne le fichier .html correspondant, sans changer l'URL affichée ---
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
