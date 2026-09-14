@@ -32,6 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key === "Escape") closeAllRdvMenus();
   });
 
+  var mapBtn = document.getElementById("map-load-btn");
+  if (mapBtn) {
+    mapBtn.addEventListener("click", function () {
+      var container = document.getElementById("map-consent");
+      container.innerHTML = '<iframe src="https://www.google.com/maps?q=245+avenue+Daumesnil+75012+Paris&output=embed" loading="lazy" title="Localisation du cabinet, 245 avenue Daumesnil, Paris 12"></iframe>';
+    });
+  }
+
   var form = document.querySelector(".contact-form");
   if (form) {
     form.addEventListener("submit", function (e) {
