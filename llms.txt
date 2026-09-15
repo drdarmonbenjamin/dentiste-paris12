@@ -19,6 +19,7 @@
 ## Pages du site
 - Accueil : https://www.dentiste-paris12.com/
 - L'équipe : https://www.dentiste-paris12.com/cabinet-chirurgien-dentiste-paris
+- Enseignement et congrès du Dr Darmon : https://www.dentiste-paris12.com/publications-et-conferences-implants-dentaires
 - Contact et prise de rendez-vous : https://www.dentiste-paris12.com/contact
 - Mentions légales : https://www.dentiste-paris12.com/mentions-legales
 - Politique de confidentialité : https://www.dentiste-paris12.com/politique-confidentialite
