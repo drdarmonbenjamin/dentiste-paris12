@@ -14,6 +14,14 @@ if (!empty($_POST['botcheck'])) {
     exit;
 }
 
+// --- Anti-spam (question simple) : seul un humain peut répondre correctement ---
+$captcha = isset($_POST['captcha']) ? trim($_POST['captcha']) : '';
+if ($captcha !== '9') {
+    header('HTTP/1.1 400 Bad Request');
+    echo json_encode(array('success' => false, 'message' => 'Réponse incorrecte à la question de vérification.'));
+    exit;
+}
+
 // --- Nettoyage basique des champs (anti-injection d'en-têtes email) ---
 function cd_clean($value) {
     $value = trim($value);
@@ -26,6 +34,14 @@ $email   = isset($_POST['email'])   ? cd_clean($_POST['email'])   : '';
 $phone   = isset($_POST['phone'])   ? cd_clean($_POST['phone'])   : '';
 $message = isset($_POST['message']) ? trim(str_replace(array("\r\n", "\r"), "\n", $_POST['message'])) : '';
 $consent = isset($_POST['consent']) ? $_POST['consent'] : '';
+
+// --- Anti-spam (liens HTML) : un message légitime ne contient jamais de balise ---
+$all_fields = $name . ' ' . $email . ' ' . $phone . ' ' . $message;
+if (strpos($all_fields, '<') !== false || strpos($all_fields, 'http://') !== false || strpos($all_fields, 'https://') !== false) {
+    header('HTTP/1.1 400 Bad Request');
+    echo json_encode(array('success' => false, 'message' => "Le message ne doit pas contenir de lien ou de code."));
+    exit;
+}
 
 // --- Validation minimale ---
 if ($name === '' || $email === '' || $phone === '' || $consent === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
