@@ -615,6 +615,14 @@ form.contact-form input:focus, form.contact-form textarea:focus {
 .faq-item { border-bottom: 1px solid var(--line); padding: 22px 0; }
 .faq-item h3 { font-size: 1.05rem; margin-bottom: 8px; }
 .faq-item p { font-size: 0.96rem; color: var(--text-muted); margin-bottom: 0; }
+.faq-item.with-icon { display: flex; gap: 20px; align-items: flex-start; }
+.faq-item.with-icon .step-icon { flex: none; width: 64px; height: 58px; }
+.faq-item.with-icon .step-icon svg { width: 100%; height: 100%; }
+.faq-item.with-icon .step-text { flex: 1; }
+@media (max-width: 560px) {
+  .faq-item.with-icon { flex-direction: column; }
+  .faq-item.with-icon .step-icon { width: 52px; height: 46px; }
+}
 
 /* ---------- Fiches conseils list ---------- */
 .fiche-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 10px; }
