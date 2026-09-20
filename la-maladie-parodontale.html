@@ -174,22 +174,23 @@
     <div style="display: flex; gap: 24px; flex-wrap: wrap; margin: 24px 0;">
       <div style="flex: 1; min-width: 200px; text-align: center; background: var(--sky-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px;">
         <svg viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 90px; height: 80px;" role="img" aria-label="Brossette de taille adaptée, remplissant l’espace interdentaire">
-  <line x1="20" y1="20" x2="20" y2="70" stroke="#005985" stroke-width="2.4" stroke-linecap="round"/>
-  <line x1="80" y1="20" x2="80" y2="70" stroke="#005985" stroke-width="2.4" stroke-linecap="round"/>
-  <line x1="35" y1="45" x2="65" y2="45" stroke="#4A86A8" stroke-width="4" stroke-linecap="round"/>
-  <line x1="65" y1="45" x2="90" y2="45" stroke="#8FB4C9" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="35" cy="45" r="2.6" fill="#4A86A8"/>
+  <line x1="18" y1="15" x2="18" y2="75" stroke="#005985" stroke-width="3.4" stroke-linecap="round"/>
+  <line x1="82" y1="15" x2="82" y2="75" stroke="#005985" stroke-width="3.4" stroke-linecap="round"/>
+  <line x1="18" y1="45" x2="82" y2="45" stroke="#4A86A8" stroke-width="9" stroke-linecap="round"/>
+  <line x1="2" y1="45" x2="20" y2="45" stroke="#005985" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M20 45 L2 40 M20 45 L2 50" stroke="#005985" stroke-width="1.6" stroke-linecap="round"/>
 </svg>
         <p style="margin: 8px 0 0; font-size: 0.9rem;"><strong>Taille adaptée</strong><br>remplit l’espace sans forcer</p>
       </div>
       <div style="flex: 1; min-width: 200px; text-align: center; background: var(--sky-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px;">
-        <svg viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 90px; height: 80px;" role="img" aria-label="Brossette trop petite, laissant un espace vide">
-  <line x1="20" y1="20" x2="20" y2="70" stroke="#005985" stroke-width="2.4" stroke-linecap="round"/>
-  <line x1="80" y1="20" x2="80" y2="70" stroke="#005985" stroke-width="2.4" stroke-linecap="round"/>
-  <line x1="42" y1="45" x2="58" y2="45" stroke="#4A86A8" stroke-width="2.6" stroke-linecap="round"/>
-  <line x1="58" y1="45" x2="90" y2="45" stroke="#8FB4C9" stroke-width="1.6" stroke-linecap="round"/>
-  <circle cx="42" cy="45" r="2" fill="#4A86A8"/>
-  <path d="M30 35 L34 45 L30 55" stroke="#D9868C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <svg viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 90px; height: 80px;" role="img" aria-label="Brossette trop petite, laissant un espace vide de chaque côté">
+  <line x1="18" y1="15" x2="18" y2="75" stroke="#005985" stroke-width="3.4" stroke-linecap="round"/>
+  <line x1="82" y1="15" x2="82" y2="75" stroke="#005985" stroke-width="3.4" stroke-linecap="round"/>
+  <rect x="20" y="38" width="15" height="14" fill="#F4DCDE"/>
+  <rect x="65" y="38" width="15" height="14" fill="#F4DCDE"/>
+  <line x1="35" y1="45" x2="65" y2="45" stroke="#4A86A8" stroke-width="7" stroke-linecap="round"/>
+  <line x1="19" y1="45" x2="37" y2="45" stroke="#005985" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M37 45 L19 40 M37 45 L19 50" stroke="#005985" stroke-width="1.4" stroke-linecap="round"/>
 </svg>
         <p style="margin: 8px 0 0; font-size: 0.9rem;"><strong>Trop petite</strong><br>ne brosse pas suffisamment</p>
       </div>
@@ -280,11 +281,16 @@
         <p>Pour éliminer la plaque entre les dents.</p>
       </div>
       <div class="care-card" style="text-align: center;">
-        <svg viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 50px; height: 56px;" role="img" aria-label="Dentifrice fluoré">
-  <rect x="40" y="8" width="20" height="13" rx="2" stroke="#005985" stroke-width="2.2"/>
-  <path d="M42 21 L42 32 L30 32 L30 74 Q30 82 40 82 L60 82 Q70 82 70 74 L70 32 L58 32 L58 21" stroke="#005985" stroke-width="2.2" stroke-linejoin="round"/>
-  <line x1="30" y1="48" x2="70" y2="48" stroke="#4A86A8" stroke-width="1.8"/>
-  <line x1="30" y1="60" x2="70" y2="60" stroke="#4A86A8" stroke-width="1.8"/>
+        <svg viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 50px; height: 56px;" role="img" aria-label="Dentifrice fluoré, en tube">
+  <rect x="40" y="6" width="20" height="11" rx="2" stroke="#005985" stroke-width="2.2"/>
+  <path d="M42 17 L38 26 L26 26" stroke="#005985" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M58 17 L62 26 L74 26" stroke="#005985" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M26 26 L22 60 L28 68 L72 68 L78 60 L74 26 Z" stroke="#005985" stroke-width="2.2" stroke-linejoin="round"/>
+  <line x1="32" y1="68" x2="32" y2="74" stroke="#005985" stroke-width="3" stroke-linecap="round"/>
+  <line x1="42" y1="68" x2="42" y2="76" stroke="#005985" stroke-width="3" stroke-linecap="round"/>
+  <line x1="52" y1="68" x2="52" y2="76" stroke="#005985" stroke-width="3" stroke-linecap="round"/>
+  <line x1="62" y1="68" x2="62" y2="74" stroke="#005985" stroke-width="3" stroke-linecap="round"/>
+  <line x1="26" y1="42" x2="74" y2="42" stroke="#4A86A8" stroke-width="1.6"/>
 </svg>
         <h3>Dentifrice fluoré</h3>
         <p>Pour contribuer à la prévention des caries.</p>
