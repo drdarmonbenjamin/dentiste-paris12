@@ -95,6 +95,9 @@
 </div></p>
       <form class="contact-form" action="contact-handler.php" method="post">
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" id="form_ts" name="form_ts" value="">
+        <input type="hidden" id="captcha_a" name="captcha_a" value="">
+        <input type="hidden" id="captcha_b" name="captcha_b" value="">
         <div class="form-notice">
           <strong>Merci de ne transmettre aucune information médicale ou de santé</strong> (douleur, dent concernée, traitement en cours…) via ce formulaire. Pour toute question clinique, appelez-nous directement ou utilisez la messagerie sécurisée Doctolib.
         </div>
@@ -115,7 +118,7 @@
           <textarea id="message" name="message" rows="4"></textarea>
         </div>
         <div>
-          <label for="captcha">Vérification anti-spam : combien font 6 + 3 ?</label>
+          <label for="captcha">Vérification anti-spam : <span id="captcha-question">combien font 6 + 3&nbsp;?</span></label>
           <input id="captcha" name="captcha" type="text" inputmode="numeric" required autocomplete="off">
         </div>
         <label class="consent-check">

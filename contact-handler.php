@@ -14,11 +14,22 @@ if (!empty($_POST['botcheck'])) {
     exit;
 }
 
-// --- Anti-spam (question simple) : seul un humain peut répondre correctement ---
-$captcha = isset($_POST['captcha']) ? trim($_POST['captcha']) : '';
-if ($captcha !== '9') {
+// --- Anti-spam (question générée aléatoirement à chaque chargement) ---
+$captcha   = isset($_POST['captcha'])   ? trim($_POST['captcha']) : '';
+$captcha_a = isset($_POST['captcha_a']) ? (int) $_POST['captcha_a'] : -1;
+$captcha_b = isset($_POST['captcha_b']) ? (int) $_POST['captcha_b'] : -1;
+if ((string) ($captcha_a + $captcha_b) !== $captcha) {
     header('HTTP/1.1 400 Bad Request');
     echo json_encode(array('success' => false, 'message' => 'Réponse incorrecte à la question de vérification.'));
+    exit;
+}
+
+// --- Anti-spam (délai minimum) : un envoi en moins de 3 secondes n'est pas humain ---
+// Délai calculé uniquement par le navigateur (une seule horloge, aucune comparaison serveur/client)
+$elapsed_ms = isset($_POST['form_ts']) ? (float) $_POST['form_ts'] : 0;
+if ($elapsed_ms < 3000) {
+    header('HTTP/1.1 400 Bad Request');
+    echo json_encode(array('success' => false, 'message' => 'Merci de patienter quelques secondes avant l\'envoi.'));
     exit;
 }
 

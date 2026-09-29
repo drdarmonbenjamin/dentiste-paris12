@@ -42,10 +42,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var form = document.querySelector(".contact-form");
   if (form) {
+    // Anti-spam : délai minimum avant envoi, mesuré uniquement avec l'horloge du navigateur
+    // (évite tout décalage avec l'horloge du serveur)
+    var formLoadTime = Date.now();
+
+    // Question anti-spam générée aléatoirement à chaque chargement
+    var qSpan = form.querySelector("#captcha-question");
+    var aField = form.querySelector("#captcha_a");
+    var bField = form.querySelector("#captcha_b");
+    if (qSpan && aField && bField) {
+      var a = Math.floor(Math.random() * 6) + 2;
+      var b = Math.floor(Math.random() * 6) + 2;
+      aField.value = a;
+      bField.value = b;
+      qSpan.textContent = "combien font " + a + " + " + b + "\u00a0?";
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var status = form.querySelector(".form-status");
       var submitBtn = form.querySelector("button[type=submit]");
+      var tsField = form.querySelector("#form_ts");
+      if (tsField) tsField.value = Date.now() - formLoadTime;
       var formData = new FormData(form);
 
       if (status) status.textContent = "Envoi en cours...";
