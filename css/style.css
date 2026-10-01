@@ -477,6 +477,29 @@ section.deep p { color: rgba(255,255,255,0.82); }
 }
 .illus-panel .illus-credit a { color: inherit; text-decoration: underline; }
 
+.video-panel {
+  max-width: 720px;
+  margin: 0 auto 28px;
+  padding: 26px;
+  background: var(--sky-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.video-panel video {
+  width: 100%;
+  max-width: 100%;
+  border-radius: calc(var(--radius) - 4px);
+  display: block;
+  background: #0a1a26;
+}
+.video-panel .illus-caption {
+  margin: 14px 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  max-width: none;
+}
+
 /* ---------- Steps (sequential content only) ---------- */
 .steps { counter-reset: step; display: grid; gap: 0; border-top: 1px solid var(--line); }
 .step {
