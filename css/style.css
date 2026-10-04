@@ -477,7 +477,7 @@ section.deep p { color: rgba(255,255,255,0.82); }
 }
 .illus-panel .illus-credit a { color: inherit; text-decoration: underline; }
 
-/* ---------- Illustrations pédagogiques (texte + figure) ---------- */
+/* ---------- Illustrations pédagogiques (texte + figure, en alternance gauche/droite) ---------- */
 .split { display: flex; align-items: center; }
 .split > div { flex: 1 1 0; min-width: 0; }
 .split > .split-media { flex: 0 0 400px; max-width: 400px; margin-left: 48px; }
