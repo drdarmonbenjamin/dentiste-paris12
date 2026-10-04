@@ -477,6 +477,35 @@ section.deep p { color: rgba(255,255,255,0.82); }
 }
 .illus-panel .illus-credit a { color: inherit; text-decoration: underline; }
 
+/* ---------- Illustrations pédagogiques (texte + figure) ---------- */
+.split { display: flex; align-items: center; }
+.split > div { flex: 1 1 0; min-width: 0; }
+.split > .split-media { flex: 0 0 400px; max-width: 400px; margin-left: 48px; }
+.split.split-reverse > .split-media { order: -1; margin-left: 0; margin-right: 48px; }
+.split:not(:last-child) { margin-bottom: 32px; }
+.edu-figure {
+  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.edu-figure img { display: block; width: 100%; height: auto; }
+.edu-figure figcaption {
+  padding: 12px 16px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  border-top: 1px solid var(--line-soft);
+}
+.edu-pair { display: flex; flex-wrap: wrap; margin: 26px -10px 8px; }
+.edu-pair .edu-figure { flex: 1 1 260px; max-width: 410px; margin: 0 10px 20px; }
+.edu-solo { max-width: 410px; margin: 22px 0 26px; }
+@media (max-width: 920px) {
+  .split, .split.split-reverse { display: block; }
+  .split > .split-media, .split.split-reverse > .split-media { margin: 24px 0 0; max-width: 440px; }
+}
+
 .video-panel {
   max-width: 720px;
   margin: 0 auto 28px;
