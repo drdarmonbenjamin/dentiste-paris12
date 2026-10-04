@@ -696,6 +696,10 @@ form.contact-form input:focus, form.contact-form textarea:focus {
 .fiche-card h3 { color: var(--blue-deep); font-size: 1.05rem; margin-bottom: 8px; }
 .fiche-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0; }
 .fiche-card:hover h3 { color: var(--blue); }
+/* Pictogramme en badge dans le coin de la carte : hors flux, la taille de la carte ne change pas */
+.fiche-card.has-icon { position: relative; }
+.fiche-card.has-icon h3 { padding-right: 52px; }
+.fiche-icon { position: absolute; top: 14px; right: 20px; width: 40px; height: 40px; border-radius: 50%; }
 
 /* ---------- Footer ---------- */
 footer.site-footer {
