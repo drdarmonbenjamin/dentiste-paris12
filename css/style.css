@@ -480,8 +480,8 @@ section.deep p { color: rgba(255,255,255,0.82); }
 /* ---------- Illustrations pédagogiques (texte + figure, en alternance gauche/droite) ---------- */
 .split { display: flex; align-items: center; }
 .split > div { flex: 1 1 0; min-width: 0; }
-.split > .split-media { flex: 0 0 400px; max-width: 400px; margin-left: 48px; }
-.split.split-reverse > .split-media { order: -1; margin-left: 0; margin-right: 48px; }
+.split > .split-media { flex: 0 0 300px; max-width: 300px; margin-left: 40px; }
+.split.split-reverse > .split-media { order: -1; margin-left: 0; margin-right: 40px; }
 .split:not(:last-child) { margin-bottom: 32px; }
 .edu-figure {
   margin: 0;
@@ -492,18 +492,32 @@ section.deep p { color: rgba(255,255,255,0.82); }
 }
 .edu-figure img { display: block; width: 100%; height: auto; }
 .edu-figure figcaption {
-  padding: 12px 16px;
-  font-size: 0.84rem;
+  padding: 10px 14px;
+  font-size: 0.8rem;
   line-height: 1.5;
   color: var(--text-muted);
   border-top: 1px solid var(--line-soft);
 }
 .edu-pair { display: flex; flex-wrap: wrap; margin: 26px -10px 8px; }
-.edu-pair .edu-figure { flex: 1 1 260px; max-width: 410px; margin: 0 10px 20px; }
-.edu-solo { max-width: 410px; margin: 22px 0 26px; }
+.edu-pair .edu-figure { flex: 1 1 200px; max-width: 300px; margin: 0 10px 20px; }
+.edu-solo { max-width: 300px; margin: 22px 0 26px; }
 @media (max-width: 920px) {
   .split, .split.split-reverse { display: block; }
-  .split > .split-media, .split.split-reverse > .split-media { margin: 24px 0 0; max-width: 440px; }
+  .split > .split-media, .split.split-reverse > .split-media { margin: 24px 0 0; max-width: 340px; }
+}
+
+/* ---------- Liste illustrée (facteurs du tarif d'un implant) ---------- */
+.factor-list { list-style: none; margin: 28px 0 30px; padding: 0; max-width: 940px; }
+.factor { display: flex; align-items: center; padding: 22px 0; border-top: 1px solid var(--line); }
+.factor:last-child { border-bottom: 1px solid var(--line); }
+.factor-text { flex: 1 1 0; min-width: 0; }
+.factor-text p { margin: 0; font-size: 0.98rem; }
+.factor-media { flex: 0 0 230px; max-width: 230px; margin: 0 0 0 40px; order: 1; }
+.factor:nth-child(even) .factor-media { order: 0; margin: 0 40px 0 0; }
+.factor-media img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+@media (max-width: 920px) {
+  .factor { display: block; }
+  .factor-media, .factor:nth-child(even) .factor-media { max-width: 220px; margin: 0 0 16px; }
 }
 
 .video-panel {
