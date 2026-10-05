@@ -2,7 +2,7 @@
    Dr Benjamin Darmon — Chirurgien-Dentiste Implantologue Paris 12
    Design : précision clinique, tons bleu / blanc, épuré
    ========================================================= */
-/* VERSION 20261005a : illustrations (pages Implants, Extraction, Brossage, Parodontale, Tarifs, Conseils) */
+/* VERSION 20261005b : illustrations (pages Implants, Prothese, Extraction, Brossage, Parodontale, Tarifs, Conseils) */
 
 :root {
   /* Palette calée sur le logo du cabinet (dent/implant bleu + texte noir) */
@@ -598,6 +598,15 @@ section.deep p { color: rgba(255,255,255,0.82); }
   .compare-trio img { flex: none; width: 130px; margin-right: 16px; }
   .compare-label { margin-top: 0; }
 }
+
+/* ---------- Fiche Prothese : illustration d'en-tete, cartes illustrees, duo de prothèses amovibles ---------- */
+.split > .split-media.split-media-hero { flex-basis: 300px; max-width: 300px; }
+.split > .split-media.split-media-md { flex-basis: 270px; max-width: 270px; }
+.split > .split-media.edu-duo { flex-basis: 340px; max-width: 340px; display: flex; }
+.edu-duo .edu-figure { flex: 1 1 0; min-width: 0; margin-right: 12px; }
+.edu-duo .edu-figure:last-child { margin-right: 0; }
+.care-card .card-illus.card-illus-sm { height: 104px; }
+.page-hero .split { align-items: center; }
 
 .video-panel {
   max-width: 720px;
