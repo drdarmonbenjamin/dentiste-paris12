@@ -515,9 +515,19 @@ section.deep p { color: rgba(255,255,255,0.82); }
 .factor-media { flex: 0 0 230px; max-width: 230px; margin: 0 0 0 40px; order: 1; }
 .factor:nth-child(even) .factor-media { order: 0; margin: 0 40px 0 0; }
 .factor-media img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+/* Variantes de la liste illustrée (images plus petites, sens de départ) */
+.factor-text p + p { margin-top: 6px; }
+.factor-text .step-note { margin: 6px 0 0 38px; }
+.factor-list.factor-compact .factor-media { flex-basis: 150px; max-width: 150px; }
+.factor-list.factor-wide .factor-media { flex-basis: 240px; max-width: 240px; }
+.factor-list.start-left .factor:nth-child(odd) .factor-media { order: 0; margin: 0 40px 0 0; }
+.factor-list.start-left .factor:nth-child(even) .factor-media { order: 1; margin: 0 0 0 40px; }
+.split > .split-media.split-media-sm { flex-basis: 240px; max-width: 240px; }
 @media (max-width: 920px) {
   .factor { display: block; }
-  .factor-media, .factor:nth-child(even) .factor-media { max-width: 220px; margin: 0 0 16px; }
+  .factor-media, .factor:nth-child(even) .factor-media, .factor-list.start-left .factor:nth-child(odd) .factor-media, .factor-list.start-left .factor:nth-child(even) .factor-media { max-width: 220px; margin: 0 0 16px; }
+  .factor-list.factor-compact .factor-media { max-width: 150px; }
+  .split > .split-media.split-media-sm { max-width: 240px; }
 }
 
 /* ---------- Fiche brossage : chronomètre d'intro et liste illustrée des bons réflexes ---------- */
@@ -538,7 +548,7 @@ section.deep p { color: rgba(255,255,255,0.82); }
 
 /* ---------- Frise d'étapes illustrées (pose d'implant, préservation alvéolaire) ---------- */
 .strip-title { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); margin: 0 0 18px; max-width: none; }
-.step-strip { list-style: none; margin: 30px 0 8px; padding: 0; display: flex; max-width: 1040px; }
+.step-strip { list-style: none; margin: 30px 0 8px; padding: 0; display: flex; max-width: 900px; }
 .step-strip.step-strip-4 { margin: 0 0 44px; }
 .step-strip.step-strip-3 { max-width: 660px; }
 .step-strip > li { position: relative; flex: 1 1 0; min-width: 0; margin-right: 24px; }
@@ -566,6 +576,26 @@ section.deep p { color: rgba(255,255,255,0.82); }
 @media (max-width: 340px) {
   .step-strip.step-strip-4 { display: block; }
   .step-strip.step-strip-4 > li, .step-strip.step-strip-4 > li:nth-child(odd) { max-width: 320px; margin: 0 0 26px 0; }
+}
+
+/* ---------- Fiche Implants : trio comparatif, pastilles illustrées, étapes, tailles de figures ---------- */
+.compare-trio { list-style: none; margin: 26px 0 30px; padding: 0; display: flex; flex-wrap: wrap; max-width: 660px; }
+.compare-trio li { flex: 1 1 150px; max-width: 200px; margin: 0 22px 18px 0; text-align: center; }
+.compare-trio li:last-child { margin-right: 0; }
+.compare-trio img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.compare-label { margin: 10px 0 2px; font-size: 0.95rem; font-weight: 600; color: var(--ink); max-width: none; }
+.compare-note { margin: 0; font-size: 0.85rem; line-height: 1.45; color: var(--text-muted); max-width: none; }
+.care-card .card-circle { display: block; width: 88px; height: 88px; margin: 0 0 18px; }
+.steps-illus .step { display: flex; align-items: center; }
+.steps-illus .step::before { display: none; }
+.step-pic { flex: none; width: 100px; height: 100px; margin-right: 24px; }
+.split > .split-media.split-media-xs { flex-basis: 200px; max-width: 200px; }
+.split > .split-media.split-media-portrait { flex-basis: 176px; max-width: 176px; }
+@media (max-width: 600px) {
+  .step-pic { width: 76px; height: 76px; margin-right: 16px; }
+  .compare-trio li, .compare-trio li:last-child { display: flex; align-items: center; flex: 0 0 100%; max-width: none; margin: 0 0 14px 0; text-align: left; }
+  .compare-trio img { flex: none; width: 130px; margin-right: 16px; }
+  .compare-label { margin-top: 0; }
 }
 
 .video-panel {
