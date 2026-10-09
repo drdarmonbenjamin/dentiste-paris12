@@ -2,7 +2,7 @@
    Dr Benjamin Darmon — Chirurgien-Dentiste Implantologue Paris 12
    Design : précision clinique, tons bleu / blanc, épuré
    ========================================================= */
-/* VERSION 20261005c : illustrations (pages Implants, Prothese, Extraction, Brossage, Parodontale, Tarifs, Conseils) */
+/* VERSION 20261005d : fiche apres surfacage radiculaire (page, frises, liste illustree) */
 
 :root {
   /* Palette calée sur le logo du cabinet (dent/implant bleu + texte noir) */
@@ -875,6 +875,17 @@ footer.site-footer {
   .footer-grid { grid-template-columns: 1fr; }
   .cta-band .wrap { flex-direction: column; align-items: flex-start; }
 }
+
+/* ---------- Fiche après surfaçage radiculaire ---------- */
+.factor-list.factor-sm .factor-media { flex-basis: 200px; max-width: 200px; }
+.factor-list .factor-media.factor-media-narrow { flex-basis: 128px; max-width: 128px; }
+.factor-text h3 { margin: 0 0 4px; font-size: 1.15rem; }
+.factor-text .factor-sub { margin: 0 0 8px; font-size: 0.9rem; color: var(--text-muted); }
+.factor-text .check-list { margin: 10px 0 10px; }
+.factor-text .check-list li { margin-bottom: 6px; font-size: 0.95rem; }
+.strip-lede { margin: 0 0 22px; max-width: 760px; font-size: 1.02rem; }
+.fiche-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 24px; }
+.sign-off { margin: 22px 0 0; font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--blue-deep); max-width: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
