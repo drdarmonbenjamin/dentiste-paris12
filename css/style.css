@@ -2,7 +2,7 @@
    Dr Benjamin Darmon — Chirurgien-Dentiste Implantologue Paris 12
    Design : précision clinique, tons bleu / blanc, épuré
    ========================================================= */
-/* VERSION 20261005h : fluor (role, HAS, quantites par age, conseils), implants, parodontale, carie, fiche apres surfacage */
+/* VERSION 20261005i : aphte (types, localisations, causes, solutions), fluor, implants, parodontale, carie, fiche apres surfacage */
 
 :root {
   /* Palette calée sur le logo du cabinet (dent/implant bleu + texte noir) */
@@ -924,6 +924,20 @@ footer.site-footer {
 .age-qty strong { color: var(--blue); }
 .age-hint { display: block; font-size: 0.82rem; color: var(--text-muted); }
 .reflex-list.reflex-sm .reflex img { width: 64px; height: 64px; margin-right: 20px; }
+
+/* ---------- Fiche aphte ---------- */
+.step-strip.strip-sm img { width: 130px; max-width: 100%; }
+.care-card .type-pic { display: block; width: 120px; height: auto; margin: 0 0 16px; }
+.care-card .check-list { margin: 0; }
+.care-card .check-list li { font-size: 0.93rem; }
+.cause-grid { display: flex; flex-wrap: wrap; list-style: none; margin: 26px -10px 22px; padding: 0; max-width: 900px; }
+.cause-grid li { flex: 0 0 calc(25% - 20px); margin: 0 10px 22px; text-align: center; font-size: 0.88rem; line-height: 1.4; color: var(--text-muted); }
+.cause-grid .cause-pic { display: block; width: 64px; height: 64px; margin: 0 auto 8px; }
+.alert-list { list-style: none; margin: 20px 0 0; padding: 0; max-width: 760px; }
+.alert-list li { position: relative; padding: 9px 0 9px 40px; border-top: 1px solid var(--line-soft); font-size: 0.98rem; }
+.alert-list li:last-child { border-bottom: 1px solid var(--line-soft); }
+.alert-list li::before { content: "!"; position: absolute; left: 0; top: 50%; width: 24px; height: 24px; margin-top: -12px; border-radius: 50%; background: #FBE6E6; color: #C0392B; font-size: 0.9rem; font-weight: 700; line-height: 24px; text-align: center; }
+@media (max-width: 600px) { .cause-grid li { flex-basis: calc(50% - 20px); } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
