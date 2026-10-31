@@ -245,7 +245,7 @@ def build_article(a):
     toc = "\n".join(f'<li><a href="#{sid}">{typo(t)}</a></li>' for sid, t in toc_items)
     cover = (f'<figure class="post-cover"><img src="img/{a["slug"]}-1200.jpg" srcset="img/{a["slug"]}-640.jpg 640w, img/{a["slug"]}-1200.jpg 1200w" '
              f'sizes="(max-width: 860px) 100vw, 780px" width="1200" height="630" alt="{esc(ph["alt"])}" fetchpriority="high" decoding="async">'
-             f'<figcaption>Photo illustrative : <a href="{ph["page"]}" rel="noopener" target="_blank">Pexels</a>, licence libre. Elle ne montre pas un cas réel.</figcaption></figure>')
+             f'<figcaption>{ph["origine"]}. Elle ne montre pas un cas réel.</figcaption></figure>')
     body = [cover, typo(DISCLAIMER), '<div class="post-key"><h2>L\'essentiel</h2><ul>' + "".join(f"<li>{typo(k)}</li>" for k in a["key"]) + "</ul></div>"]
     if "_intro" in figs:
         body.append(typo(linkify(figs["_intro"])))
@@ -404,10 +404,10 @@ def build_dossier():
         for claim, key, loc in a["claims_all"]:
             p.append(f'<tr><td>{typo(claim)}</td><td>{typo(REFS[key][0])}</td><td>{typo(loc)}</td></tr>\n')
         p.append("</tbody></table>\n")
-    p.append('<h2>Photos des articles : sources et licences</h2>\n<p>Objets, maquettes et instruments uniquement : aucune photo de patient identifiable, aucun avant/après, aucune marque lisible (vérifié à l\'écran sur les 13 images). Licence Pexels : usage libre, y compris commercial, sans obligation de mention ; la page de chaque photo est liée sous l\'image dans l\'article. Les images ont été recadrées (1200 x 630 et 640 x 336).</p>\n<table class="dossier-table"><thead><tr><th>Article</th><th>Photo (page d\'origine)</th><th>Auteur</th><th>Texte alternatif</th></tr></thead><tbody>\n')
+    p.append('<h2>Illustrations des articles</h2>\n<p>Images générées par intelligence artificielle (ChatGPT) à partir de prompts rédigés pour la charte graphique du site, puis recadrées (1200 x 630 et 640 x 336). Aucun patient identifiable, aucun avant/après, aucune marque ni texte lisible. <strong>À valider par le Dr Darmon :</strong> une image générée peut comporter des inexactitudes anatomiques (nombre de racines, forme de l\'implant, niveau de l\'os). La légende sous chaque image précise qu\'elle est générée par intelligence artificielle et qu\'elle ne montre pas un cas réel.</p>\n<table class="dossier-table"><thead><tr><th>Article</th><th>Texte alternatif</th><th>Remarque</th></tr></thead><tbody>\n')
     for a in sorted(ARTICLES, key=lambda x: x["date"]):
         ph = PHOTOS[a["slug"]]
-        p.append(f'<tr><td>{typo(a["title"])}</td><td><a href="{ph["page"]}" rel="noopener" target="_blank">{esc(ph["page"])}</a></td><td>{esc(ph["auteur"])}</td><td>{typo(ph["alt"])}</td></tr>\n')
+        p.append(f'<tr><td>{typo(a["title"])}</td><td>{typo(ph["alt"])}</td><td>{typo(ph["note"])}</td></tr>\n')
     p.append("</tbody></table>\n")
     p.append('<h2>Bibliographie complète et état de la vérification</h2>\n<table class="dossier-table"><thead><tr><th>Référence</th><th>Lien</th><th>Statut</th></tr></thead><tbody>\n')
     for k, (cit, url, st) in REFS.items():
