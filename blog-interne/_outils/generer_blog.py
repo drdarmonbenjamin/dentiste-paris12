@@ -24,6 +24,7 @@ from articles_blog_1 import ARTICLES_1
 from articles_blog_2 import ARTICLES_2
 from enrichissements_blog_1 import ENRICH_1
 from enrichissements_blog_2 import ENRICH_2
+from photos_blog import PHOTOS
 
 ROOT = HERE.parents[1]
 VERSION = "20261005k"
@@ -33,6 +34,7 @@ ARTICLES = ARTICLES_1 + ARTICLES_2
 BY_SLUG = {a["slug"]: a for a in ARTICLES}
 ENRICH = {**ENRICH_1, **ENRICH_2}
 assert set(ENRICH) == set(BY_SLUG), "enrichissements manquants ou en trop"
+assert set(PHOTOS) == set(BY_SLUG), "photos manquantes ou en trop"
 for _a in ARTICLES:   # les affirmations ajoutées par les enrichissements rejoignent le dossier de relecture
     _a["claims_all"] = list(_a["claims"]) + list(ENRICH[_a["slug"]].get("claims_more", []))
 CATS = ["Actualité", "Gencives", "Traitement", "Santé générale", "Implants"]
@@ -171,7 +173,10 @@ DATE_SCRIPT = '''<script>
 
 # ------------------------------------------------------------------ cartes
 def card(a):
+    ph = PHOTOS[a["slug"]]
+    img = (f'<span class="post-card-img"><img src="img/{a["slug"]}-640.jpg" width="640" height="336" alt="{esc(ph["alt"])}" loading="lazy" decoding="async"></span>')
     return f'''<a class="post-card" href="{BLOG_URL}{a["slug"]}" data-cat="{esc(a["cat"])}" data-pub="{a["date"]}">
+  {img}
   <div class="post-card-meta"><span>{fr_date(a["date"])}</span><span class="post-tag">{typo(a["cat"])}</span></div>
   <h3>{typo(a["title"])}</h3>
   <p>{typo(a["card"])}</p>
@@ -179,40 +184,6 @@ def card(a):
 </a>'''
 
 DISCLAIMER = '<p class="post-disclaimer"><strong>Information générale.</strong> Cet article s\'appuie sur des recommandations publiées. Il ne constitue ni un diagnostic, ni une prescription, ni un conseil personnalisé : seul un examen par un chirurgien-dentiste ou un médecin permet de décider de la prise en charge qui vous convient. Ne commencez et n\'arrêtez aucun traitement sur la seule foi de cet article.</p>'
-
-# ------------------------------------------------------------------ images de partage (1200 x 630)
-def og_path(a):
-    return ROOT / "blog" / "img" / ("og-" + a["slug"] + ".jpg")
-
-def make_og_image(a):
-    from PIL import Image, ImageDraw, ImageFont
-    W, H = 1200, 630
-    im = Image.new("RGB", (W, H), "#EAF2F6")
-    d = ImageDraw.Draw(im)
-    d.rectangle([0, 0, 18, H], fill="#005985")
-    d.rectangle([18, H - 120, W, H], fill="#005985")
-    fdir = "/usr/share/fonts/truetype/dejavu/"
-    f_title = ImageFont.truetype(fdir + "DejaVuSerif-Bold.ttf", 54)
-    f_small = ImageFont.truetype(fdir + "DejaVuSans.ttf", 28)
-    f_tag = ImageFont.truetype(fdir + "DejaVuSans-Bold.ttf", 26)
-    d.text((70, 70), a["cat"].upper(), font=f_tag, fill="#2C749A")
-    # retour à la ligne selon la largeur réelle
-    words, lines, cur = a["title"].split(), [], ""
-    for w in words:
-        t = (cur + " " + w).strip()
-        if d.textlength(t, font=f_title) <= W - 140:
-            cur = t
-        else:
-            lines.append(cur); cur = w
-    lines.append(cur)
-    y = 140
-    for ln in lines[:5]:
-        d.text((70, y), ln, font=f_title, fill="#0A0F14"); y += 74
-    d.text((70, H - 88), "Blog parodontologie et implantologie", font=f_small, fill="#FFFFFF")
-    d.text((70, H - 50), "Dr Benjamin Darmon, chirurgien-dentiste", font=f_small, fill="#D9E3E9")
-    p = og_path(a)
-    p.parent.mkdir(exist_ok=True)
-    im.save(p, "JPEG", quality=84, optimize=True)
 
 # ------------------------------------------------------------------ page article
 def build_article(a):
@@ -225,7 +196,8 @@ def build_article(a):
     assert len(desc) <= 160, (a["slug"], len(desc))
     seo_title = en["seo_title"]
     assert len(seo_title) <= 40, (a["slug"], len(seo_title))
-    image = f"{SITE}/blog/img/og-{a['slug']}.jpg"
+    ph = PHOTOS[a["slug"]]
+    image = f"{SITE}/blog/img/{a['slug']}-1200.jpg"
     cites = [html.unescape(re.sub(r"<[^>]+>", "", REFS[k][0])) for k in a["refs"]]
     words = body_words(a)
     graph = [{
@@ -254,7 +226,7 @@ def build_article(a):
              f'<meta property="article:modified_time" content="{a["date"]}">\n'
              f'<meta property="article:section" content="{esc(a["cat"])}">')
     out = [head(seo_title, desc, canonical, prefix, "index, follow, max-image-preview:large", ld,
-                image=image, image_alt=a["title"], extra_meta=extra), skip, "\n", header, '\n<main id="main">\n']
+                image=image, image_alt=ph["alt"], extra_meta=extra), skip, "\n", header, '\n<main id="main">\n']
     out.append(f'''<section class="page-hero post-hero">
   <div class="wrap">
     <p class="breadcrumb"><a href="/">Accueil</a> &rsaquo; <a href="{BLOG_URL}">Blog</a> &rsaquo; <span>{typo(a["cat"])}</span></p>
@@ -271,7 +243,10 @@ def build_article(a):
     toc_items += [("glossaire", "Les mots à connaître"), ("questions", "Questions à poser à votre praticien"),
                   ("faq", "Questions fréquentes"), ("resume", "En résumé"), ("references", "Références")]
     toc = "\n".join(f'<li><a href="#{sid}">{typo(t)}</a></li>' for sid, t in toc_items)
-    body = [typo(DISCLAIMER), '<div class="post-key"><h2>L\'essentiel</h2><ul>' + "".join(f"<li>{typo(k)}</li>" for k in a["key"]) + "</ul></div>"]
+    cover = (f'<figure class="post-cover"><img src="img/{a["slug"]}-1200.jpg" srcset="img/{a["slug"]}-640.jpg 640w, img/{a["slug"]}-1200.jpg 1200w" '
+             f'sizes="(max-width: 860px) 100vw, 780px" width="1200" height="630" alt="{esc(ph["alt"])}" fetchpriority="high" decoding="async">'
+             f'<figcaption>Photo illustrative : <a href="{ph["page"]}" rel="noopener" target="_blank">Pexels</a>, licence libre. Elle ne montre pas un cas réel.</figcaption></figure>')
+    body = [cover, typo(DISCLAIMER), '<div class="post-key"><h2>L\'essentiel</h2><ul>' + "".join(f"<li>{typo(k)}</li>" for k in a["key"]) + "</ul></div>"]
     if "_intro" in figs:
         body.append(typo(linkify(figs["_intro"])))
     for sid, t, b in list(a["sections"]) + list(en["more"]):
@@ -429,6 +404,11 @@ def build_dossier():
         for claim, key, loc in a["claims_all"]:
             p.append(f'<tr><td>{typo(claim)}</td><td>{typo(REFS[key][0])}</td><td>{typo(loc)}</td></tr>\n')
         p.append("</tbody></table>\n")
+    p.append('<h2>Photos des articles : sources et licences</h2>\n<p>Objets, maquettes et instruments uniquement : aucune photo de patient identifiable, aucun avant/après, aucune marque lisible (vérifié à l\'écran sur les 13 images). Licence Pexels : usage libre, y compris commercial, sans obligation de mention ; la page de chaque photo est liée sous l\'image dans l\'article. Les images ont été recadrées (1200 x 630 et 640 x 336).</p>\n<table class="dossier-table"><thead><tr><th>Article</th><th>Photo (page d\'origine)</th><th>Auteur</th><th>Texte alternatif</th></tr></thead><tbody>\n')
+    for a in sorted(ARTICLES, key=lambda x: x["date"]):
+        ph = PHOTOS[a["slug"]]
+        p.append(f'<tr><td>{typo(a["title"])}</td><td><a href="{ph["page"]}" rel="noopener" target="_blank">{esc(ph["page"])}</a></td><td>{esc(ph["auteur"])}</td><td>{typo(ph["alt"])}</td></tr>\n')
+    p.append("</tbody></table>\n")
     p.append('<h2>Bibliographie complète et état de la vérification</h2>\n<table class="dossier-table"><thead><tr><th>Référence</th><th>Lien</th><th>Statut</th></tr></thead><tbody>\n')
     for k, (cit, url, st) in REFS.items():
         cls = ' class="dossier-flag"' if st.startswith("A CONFIRMER") else ""
@@ -515,7 +495,6 @@ def main():
     blog = ROOT / "blog"
     blog.mkdir(exist_ok=True)
     for a in ARTICLES:
-        make_og_image(a)
         (blog / (a["slug"] + ".html")).write_text(build_article(a), encoding="utf-8")
     (blog / "index.html").write_text(build_index(), encoding="utf-8")
     (ROOT / "blog-interne" / "dossier-relecture.html").write_text(build_dossier(), encoding="utf-8")
