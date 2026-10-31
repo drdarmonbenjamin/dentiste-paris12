@@ -28,6 +28,7 @@ Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains
 
 
 
+
 # BLOG-PLANNING-DEBUT (genere par blog-interne/_outils/generer_blog.py, ne pas modifier a la main)
 # Un article du blog renvoie une erreur 404 tant que sa date de publication n'est pas atteinte (heure du serveur).
 # Il suffit de deposer le site : aucune action manuelle n'est necessaire.
