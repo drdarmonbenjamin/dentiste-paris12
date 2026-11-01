@@ -34,3 +34,4 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://www.dentiste-paris12.com/sitemap.xml
+Sitemap: https://www.dentiste-paris12.com/sitemap-blog.php

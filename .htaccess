@@ -11,6 +11,56 @@ RewriteRule ^(.*)$ https://www.dentiste-paris12.com/$1 [R=301,L]
 # --- En-tête HSTS : indique aux navigateurs de toujours utiliser HTTPS pour ce domaine ---
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# BLOG-PLANNING-DEBUT (genere par blog-interne/_outils/generer_blog.py, ne pas modifier a la main)
+# Un article du blog renvoie une erreur 404 tant que sa date de publication n'est pas atteinte (heure du serveur).
+# Il suffit de deposer le site : aucune action manuelle n'est necessaire.
+RewriteCond %{TIME} <20261109000000
+RewriteRule ^blog/antibiotiques-chez-le-dentiste-ce-que-recommande-la-has(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20261116000000
+RewriteRule ^blog/gencives-qui-saignent-la-gingivite(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20261123000000
+RewriteRule ^blog/parodontite-comprendre-la-maladie-des-gencives(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20261130000000
+RewriteRule ^blog/traiter-une-parodontite-les-quatre-etapes(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20261207000000
+RewriteRule ^blog/le-surfacage-radiculaire-recommandations-europeennes(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20261214000000
+RewriteRule ^blog/parodontite-et-diabete-un-lien-dans-les-deux-sens(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20261221000000
+RewriteRule ^blog/parodontite-et-sante-du-coeur-consensus-europeen(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20261228000000
+RewriteRule ^blog/apres-le-traitement-parodontal-la-maintenance(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20270104000000
+RewriteRule ^blog/implant-dentaire-le-parcours-evalue-par-la-has(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20270111000000
+RewriteRule ^blog/implants-dentaires-survie-a-dix-ans-que-disent-les-etudes(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20270118000000
+RewriteRule ^blog/peut-on-poser-un-implant-apres-une-parodontite(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20270125000000
+RewriteRule ^blog/peri-implantite-reconnaitre-prevenir-traiter(\.html)?$ - [R=404,L]
+RewriteCond %{TIME} <20270201000000
+RewriteRule ^blog/prothese-sur-implant-vissee-ou-scellee(\.html)?$ - [R=404,L]
+# BLOG-PLANNING-FIN
+
 # --- Anciennes fiches PDF (WordPress) -> fiches HTML correspondantes ---
 RewriteRule ^wp-content/uploads/fiche-brossage\.pdf$ https://www.dentiste-paris12.com/le-brossage [R=301,L,NC]
 RewriteRule ^wp-content/uploads/Fiche-Carie\.pdf$ https://www.dentiste-paris12.com/la-carie-dentaire [R=301,L,NC]
@@ -37,3 +87,11 @@ RewriteRule ^ https://www.dentiste-paris12.com/%1 [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html [L]
+
+# Pages, CSS et JS : le navigateur reverifie aupres du serveur a chaque visite (reponse 304 legere si rien n a change).
+# Une mise a jour du site est ainsi visible immediatement, sans vider le cache.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
