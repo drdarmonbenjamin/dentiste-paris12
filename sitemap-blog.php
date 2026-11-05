@@ -5,7 +5,7 @@ header('Content-Type: application/xml; charset=utf-8');
 date_default_timezone_set('Europe/Paris');
 $today = date('Y-m-d');
 $articles = [
-  ['slug' => 'antibiotiques-chez-le-dentiste-ce-que-recommande-la-has', 'date' => '2026-11-09'],
+  ['slug' => 'antibiotiques-chez-le-dentiste-ce-que-recommande-la-has', 'date' => '2026-11-05'],
   ['slug' => 'gencives-qui-saignent-la-gingivite', 'date' => '2026-11-16'],
   ['slug' => 'parodontite-comprendre-la-maladie-des-gencives', 'date' => '2026-11-23'],
   ['slug' => 'traiter-une-parodontite-les-quatre-etapes', 'date' => '2026-11-30'],
