@@ -7,7 +7,7 @@ dict(
 slug="antibiotiques-chez-le-dentiste-ce-que-recommande-la-has",
 title="Antibiotiques chez le dentiste : ce que recommande la HAS en 2026",
 cat="Actualité",
-date="2026-11-05",
+date="2026-11-09",
 lede="Le 14 septembre 2026, la Haute Autorité de santé (HAS) a publié ses recommandations sur la prescription des antibiotiques en pratique bucco-dentaire. Voici, en langage simple, ce qu'elles disent pour les gencives et pour les implants.",
 card="Un antibiotique n'est pas un réflexe : ce que dit la HAS pour les gencives et les implants.",
 key=[
