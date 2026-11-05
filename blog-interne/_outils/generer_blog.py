@@ -438,7 +438,9 @@ def update_htaccess():
     t = re.sub(re.escape(HT_BEGIN) + r".*?" + re.escape(HT_END) + r"\n?", "", t, flags=re.S)
     anchor = "# --- Anciennes fiches PDF"
     assert anchor in t, "ancre .htaccess introuvable"
-    t = t.replace(anchor, htaccess_block() + "\n" + anchor, 1)
+    i = t.index(anchor)
+    head = t[:i].rstrip("\n") + "\n\n"
+    t = head + htaccess_block() + "\n" + t[i:]
     p.write_text(t, encoding="utf-8")
 
 def write_sitemap_php():

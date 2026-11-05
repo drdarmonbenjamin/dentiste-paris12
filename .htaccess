@@ -11,29 +11,10 @@ RewriteRule ^(.*)$ https://www.dentiste-paris12.com/$1 [R=301,L]
 # --- En-tête HSTS : indique aux navigateurs de toujours utiliser HTTPS pour ce domaine ---
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # BLOG-PLANNING-DEBUT (genere par blog-interne/_outils/generer_blog.py, ne pas modifier a la main)
 # Un article du blog renvoie une erreur 404 tant que sa date de publication n'est pas atteinte (heure du serveur).
 # Il suffit de deposer le site : aucune action manuelle n'est necessaire.
-RewriteCond %{TIME} <20261109000000
+RewriteCond %{TIME} <20261105000000
 RewriteRule ^blog/antibiotiques-chez-le-dentiste-ce-que-recommande-la-has(\.html)?$ - [R=404,L]
 RewriteCond %{TIME} <20261116000000
 RewriteRule ^blog/gencives-qui-saignent-la-gingivite(\.html)?$ - [R=404,L]
