@@ -29,7 +29,7 @@ from photos_blog import PHOTOS
 ROOT = HERE.parents[1]
 VERSION = "20261005k"
 SITE = "https://www.dentiste-paris12.com"
-VERIF_DATE = "31 octobre 2026"   # date de vérification des sources : à mettre à jour avant chaque mise en ligne
+VERIF_DATE = "9 novembre 2026"   # date de vérification des sources : à mettre à jour avant chaque mise en ligne
 ARTICLES = ARTICLES_1 + ARTICLES_2
 BY_SLUG = {a["slug"]: a for a in ARTICLES}
 ENRICH = {**ENRICH_1, **ENRICH_2}
